@@ -38,7 +38,7 @@ You can export them before running: export SKIN_EXCEL=/path/to/skincare.xlsx exp
 
 Note: On Windows use set or set via system environment UI.
 
-**Excel (data source) format**
+**Excel format**
 
 The app bootstraps the Chroma collection from an Excel file. The following columns are required in the sheet:
 
@@ -60,7 +60,7 @@ suitable_for: "oily"
 product_type: "cleanser"
 If the Excel is missing or columns are missing, the app will show an error.
 
-**How it works (high level)**
+**How it works**
 
 On first run the app loads the Excel file and upserts products into a Chroma collection using a sentence-transformers embedding function.
 The user takes a photo with the camera input component (or you can adapt to upload).
@@ -91,15 +91,8 @@ Make sure the ViT checkpoint exists and Ollama (if you want LLM explanations) is
 Run: streamlit run SkinCareFinalCode.py
 Open the Streamlit URL printed in the console.
 
-**Troubleshooting**
 
-"Excel not found": Verify SKIN_EXCEL path and that the file exists and has the required columns.
-Chroma bootstrap fails: Ensure the CHROMA_PATH is writable and you have correct permissions.
-ViT checkpoint errors: Confirm the checkpoint contains "model" and "classes" and that model keys match or adjust the state dict loading.
-Ollama/LLM errors: Verify Ollama is running and the MODEL_NAME is available. Check the endpoint in code.
-Missing Python packages: Install packages listed in Requirements.
-
-**Notes & TODOs**
+**Notes**
 
 The VIT_MODEL_PATH in the current script points to a Windows-specific path — change it to the correct path for your environment.
 You may want to add a requirements.txt (pip freeze or the list above) and a small sample Excel to help onboarding.
