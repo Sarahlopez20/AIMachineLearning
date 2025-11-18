@@ -100,5 +100,3 @@ The VIT_MODEL_PATH in the current script points to a Windows-specific path — c
 You may want to add a requirements.txt (pip freeze or the list above) and a small sample Excel to help onboarding.
 Consider adding tests for the routine-building logic and utilities.
 The app caches resources with Streamlit decorators — restart Streamlit when you change model files or embeddings.
-License & contact
-This project is provided as-is. Modify and use as you wish. For questions reach out to the repository owner: Sarahlopez20 (GitHub).
