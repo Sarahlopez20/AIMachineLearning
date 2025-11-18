@@ -21,6 +21,7 @@ This repository contains the main application file SkinCareFinalCode.py.
 - Python 3.9+ (test with 3.10 or 3.11)
 
 - The following Python packages (installable via pip):
+
 streamlit
 
 torch
