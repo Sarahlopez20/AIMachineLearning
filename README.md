@@ -1,10 +1,11 @@
-# AIMachineLearning
-**Skin Care AI — Streamlit app**
+# **Skin Care AI**
+
 A small Streamlit app that detects skin type and common acne issues from a photo (Vision Transformer), queries a Chroma vector DB of skincare products, builds a budget-aware routine, and generates short professional guidance using a local LLM (Ollama).
 
 This repository contains the main application file SkinCareFinalCode.py.
 
 **Features**
+
 Image-based skin detection and multi-label issue prediction using a ViT checkpoint.
 Vector search of product descriptions with Chroma (sentence-transformers embeddings).
 Routine builder that optimizes for budget and conditions.
@@ -25,6 +26,7 @@ requests
 Example: pip install -r requirements.txt (There is no requirements.txt in the repo — you can create one from the list above.)
 
 **Environment variables / configuration**
+
 The app reads these environment variables with sensible defaults:
 
 SKIN_EXCEL — Path to the Excel file with products (default: skincare.db.xlsx)
@@ -37,6 +39,7 @@ You can export them before running: export SKIN_EXCEL=/path/to/skincare.xlsx exp
 Note: On Windows use set or set via system environment UI.
 
 **Excel (data source) format**
+
 The app bootstraps the Chroma collection from an Excel file. The following columns are required in the sheet:
 
 id
@@ -58,6 +61,7 @@ product_type: "cleanser"
 If the Excel is missing or columns are missing, the app will show an error.
 
 **How it works (high level)**
+
 On first run the app loads the Excel file and upserts products into a Chroma collection using a sentence-transformers embedding function.
 The user takes a photo with the camera input component (or you can adapt to upload).
 The app uses a bit of Vision Transformer (trained checkpoint) to predict labels for skin type and various acne/skin issues.
@@ -72,6 +76,7 @@ You must have an Ollama model running locally and exposed on that port (the scri
 Adjust MODEL_NAME in SkinCareFinalCode.py to a model you have available.
 
 **ViT checkpoint**
+
 The file VIT_MODEL_PATH should point to a PyTorch checkpoint with at least the following structure:
 
 checkpoint["model"] — containing model state dict keys
@@ -79,6 +84,7 @@ checkpoint["classes"] — list of label strings for multi-label classification
 The code expects a deit_tiny_patch16_224 (timm) architecture with sigmoid outputs per class. Adapt the model creation if you use a different architecture.
 
 **Running the app**
+
 Ensure your environment variables are set (or edit the constants at the top of the script).
 Ensure the Excel file is available and has the required columns.
 Make sure the ViT checkpoint exists and Ollama (if you want LLM explanations) is running.
@@ -86,6 +92,7 @@ Run: streamlit run SkinCareFinalCode.py
 Open the Streamlit URL printed in the console.
 
 **Troubleshooting**
+
 "Excel not found": Verify SKIN_EXCEL path and that the file exists and has the required columns.
 Chroma bootstrap fails: Ensure the CHROMA_PATH is writable and you have correct permissions.
 ViT checkpoint errors: Confirm the checkpoint contains "model" and "classes" and that model keys match or adjust the state dict loading.
@@ -93,6 +100,7 @@ Ollama/LLM errors: Verify Ollama is running and the MODEL_NAME is available. Che
 Missing Python packages: Install packages listed in Requirements.
 
 **Notes & TODOs**
+
 The VIT_MODEL_PATH in the current script points to a Windows-specific path — change it to the correct path for your environment.
 You may want to add a requirements.txt (pip freeze or the list above) and a small sample Excel to help onboarding.
 Consider adding tests for the routine-building logic and utilities.
